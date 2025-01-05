@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayda Yönetim Paneli</title>
+    <style>
+        :root {
+            --dark-blue: #202541;
+            --medium-blue: #364b89;
+            --light-gray: #f2f1f0;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--medium-blue);
+            color: var(--light-gray);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            color: var(--light-gray);
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid var(--medium-blue);
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: var(--dark-blue);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid var(--medium-blue);
+            border-radius: 4px;
+            background-color: var(--light-gray);
+            word-wrap: break-word;
+            color: var(--dark-blue);
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            background-color: var(--dark-blue);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: black;
+        }
+
+        @media (max-width: 600px) {
+            header img {
+                width: 150px;
+            }
+
+            header h1 {
+                font-size: 1.4em;
+            }
+
+            nav a {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="javascript:history.back()">Geri</a>
+        <a href="index.html">Ana Sayfa</a>
+    </nav>
+
+    <header>
+        <img src="https://www.aydadil.com/wp-content/uploads/2024/03/aydankdilwhite-1.png" alt="Ayda Logo">
+        <h1>Yönetim Paneli</h1>
+    </header>
+
+    <form id="postForm">
+        <label for="postType">1- Gönderi Türü:</label>
+        <select id="postType">
+            <option value="Fotoğraf">Fotoğraf</option>
+            <option value="Video">Video</option>
+            <option value="Reels">Reels</option>
+        </select>
+
+        <label for="mainTopic">2- Ana Tema / Konu:</label>
+        <select id="mainTopic" onchange="toggleOtherField('mainTopic', 'mainTopicOther')">
+            <option value="Almanca Konuşma Pratiği">Almanca Konuşma Pratiği</option>
+            <option value="A1 Kelime Ezber Teknikleri">A1 Kelime Ezber Teknikleri</option>
+            <option value="Sınav Hazırlık İpuçları">Sınav Hazırlık İpuçları</option>
+            <option value="Tercüme ve Danışmanlık Paketleri">Tercüme ve Danışmanlık Paketleri</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+        <input type="text" id="mainTopicOther" class="hidden" placeholder="Lütfen diğer konuyu belirtin">
+
+        <label for="purpose">3- Amaç / Mesaj:</label>
+        <select id="purpose" onchange="toggleOtherField('purpose', 'purposeOther')">
+            <option value="Duyuru">Duyuru</option>
+            <option value="Bilgilendirme">Bilgilendirme</option>
+            <option value="İlham Verme">İlham Verme</option>
+            <option value="Eğitim Satışı">Eğitim Satışı</option>
+            <option value="Sınav Hazırlık">Sınav Hazırlık</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+        <input type="text" id="purposeOther" class="hidden" placeholder="Lütfen diğer amacı belirtin">
+
+        <label for="audience">4- Hedef Kitle Detayı:</label>
+        <select id="audience" onchange="toggleOtherField('audience', 'audienceOther')">
+            <option value="A1/A2 Yeni Başlayanlar">A1/A2 Yeni Başlayanlar</option>
+            <option value="B1/B2 Orta Seviye">B1/B2 Orta Seviye</option>
+            <option value="C1/C2 İleri Seviye">C1/C2 İleri Seviye</option>
+            <option value="Belirli Bir Sektöre Yönelik">Belirli Bir Sektöre Yönelik</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+        <input type="text" id="audienceOther" class="hidden" placeholder="Lütfen diğer kitleyi belirtin">
+
+        <label for="tone">5- Marka / Kişisel Ton & Tarz:</label>
+        <select id="tone" onchange="toggleOtherField('tone', 'toneOther')">
+            <option value="Resmi">Resmi</option>
+            <option value="Samimi">Samimi</option>
+            <option value="Enerjik">Enerjik</option>
+            <option value="İlham Verici">İlham Verici</option>
+            <option value="Kurumsal">Kurumsal</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+        <input type="text" id="toneOther" class="hidden" placeholder="Lütfen diğer tonu belirtin">
+
+        <label for="link">6- Link / Yönlendirme:</label>
+        <select id="link" onchange="toggleOtherField('link', 'linkOther')">
+            <option value="Web Sitesi">Web Sitesi</option>
+            <option value="YouTube Kanalı">YouTube Kanalı</option>
+            <option value="DM">DM</option>
+            <option value="Biyografideki Link">Biyografideki Link</option>
+            <option value="Özel Form">Özel Form</option>
+            <option value="Diğer">Diğer</option>
+        </select>
+        <input type="text" id="linkOther" class="hidden" placeholder="Lütfen diğer yönlendirmeyi belirtin">
+
+        <label for="highlight">7- Dikkat Çekmek İstediğin Özel Noktalar:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="highlight1" value="İndirim / Kampanya">
+            <label for="highlight1">İndirim / Kampanya</label>
+            <input type="checkbox" id="highlight2" value="Önemli Tarih">
+            <label for="highlight2">Önemli Tarih</label>
+            <input type="checkbox" id="highlight3" value="Başarı Hikâyesi">
+            <label for="highlight3">Başarı Hikâyesi</label>
+            <input type="checkbox" id="highlight4" value="Yeni Hizmet Duyurusu">
+            <label for="highlight4">Yeni Hizmet Duyurusu</label>
+            <input type="checkbox" id="highlight5" value="Diğer" onclick="toggleOtherField('highlight5', 'highlightOther')">
+            <label for="highlight5">Diğer</label>
+        </div>
+        <input type="text" id="highlightOther" class="hidden" placeholder="Lütfen diğer noktayı belirtin">
+
+        <button type="button" onclick="generateSummary()">Gönderiyi Oluştur</button>
+    </form>
+
+    <div class="output" id="output"></div>
+    <button onclick="copyToClipboard()" style="background-color: var(--dark-blue); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; margin-top: 10px;">Kopyala</button>
+
+    <script>
+        function toggleOtherField(selectId, inputId) {
+            const selectElement = document.getElementById(selectId);
+            const inputElement = document.getElementById(inputId);
+            if (selectElement.value === "Diğer" || selectElement.checked) {
+                inputElement.classList.remove("hidden");
+            } else {
+                inputElement.classList.add("hidden");
+            }
+        }
+
+        function generateSummary() {
+            const postType = document.getElementById('postType').value;
+            const mainTopic = document.getElementById('mainTopic').value;
+            const mainTopicOther = document.getElementById('mainTopicOther').value;
+            const purpose = document.getElementById('purpose').value;
+            const purposeOther = document.getElementById('purposeOther').value;
+            const audience = document.getElementById('audience').value;
+            const audienceOther = document.getElementById('audienceOther').value;
+            const tone = document.getElementById('tone').value;
+            const toneOther = document.getElementById('toneOther').value;
+            const link = document.getElementById('link').value;
+            const linkOther = document.getElementById('linkOther').value;
+
+            let highlights = [];
+            document.querySelectorAll('.checkbox-group input:checked').forEach(checkbox => {
+                highlights.push(checkbox.value);
+            });
+
+            const highlightOther = document.getElementById('highlightOther').value;
+            if (highlightOther) highlights.push(highlightOther);
+
+            const summary = `1- ${postType}\n2- ${mainTopic} ${mainTopicOther}\n3- ${purpose} ${purposeOther}\n4- ${audience} ${audienceOther}\n5- ${tone} ${toneOther}\n6- ${link} ${linkOther}\n7- ${highlights.join(', ')}`;
+
+            document.getElementById('output').textContent = summary;
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert('Metin kopyalandı!');
+            });
+        }
+    </script>
+</body>
+</html>
