@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYDA Online Yönetim Paneli</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #364b89; /* Açık mavi arka plan */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #202541; /* Koyu mavi yazı rengi */
+        }
+        header {
+            text-align: center;
+        }
+        .logo {
+            margin: 0 auto;
+        }
+        .logo img {
+            max-width: 300px; /* Logo boyutu */
+            width: 100%;
+            height: auto;
+        }
+        .panel-title {
+            margin-top: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f2f1f0; /* Beyaz */
+            text-transform: uppercase; /* Büyük harf */
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1rem;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            color: #f2f1f0; /* Beyaz yazı */
+            background-color: #202541; /* Koyu mavi buton */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button-container a:hover {
+            background-color: #001a33; /* Daha koyu mavi hover */
+            transform: scale(1.05);
+        }
+        @media screen and (max-width: 768px) {
+            .panel-title {
+                font-size: 2rem;
+            }
+            .button-container a {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.aydadil.com/wp-content/uploads/2024/03/aydankdilwhite-1.png" alt="AYDA Logo">
+        </div>
+        <div class="panel-title">YÖNETİM PANELİ</div>
+    </header>
+
+    <div class="container">
+        <div class="button-container">
+            <a href="./aciklama.html" target="_blank">Açıklama</a>
+            <a href="./gptolustur.html" target="_blank">GPT Platform</a>
+            <a href="./sirket.html" target="_blank">Şirket Bilgileri</a>
+            <a href="#">Boş Düğme 2</a>
+        </div>
+    </div>
+</body>
+</html>
