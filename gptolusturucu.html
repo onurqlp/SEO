@@ -9,6 +9,8 @@
             --dark-blue: #202541;
             --medium-blue: #364b89;
             --light-gray: #f2f1f0;
+            --text-dark: #333333; /* Daha okunabilir metin için koyu gri */
+            --text-light: #ffffff; /* Açık renk metin için beyaz */
         }
 
         body {
@@ -36,12 +38,13 @@
         }
 
         form {
-            background-color: white;
+            background-color: var(--light-gray); /* Form arka planı açık gri */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: 0 auto;
+            color: var(--text-dark); /* Form metin rengi */
         }
 
         label {
@@ -56,11 +59,13 @@
             padding: 10px;
             border: 1px solid var(--medium-blue);
             border-radius: 5px;
+            color: var(--text-dark); /* Giriş alanı metin rengi */
+            background-color: var(--light-gray); /* Giriş alanı arka planı */
         }
 
         button {
             background-color: var(--dark-blue);
-            color: white;
+            color: var(--text-light);
             border: none;
             padding: 10px 15px;
             cursor: pointer;
@@ -77,9 +82,9 @@
             padding: 10px;
             border: 1px solid var(--medium-blue);
             border-radius: 4px;
-            background-color: var(--light-gray);
+            background-color: var(--light-gray); /* Çıktı alanı arka planı */
             word-wrap: break-word;
-            color: var(--dark-blue);
+            color: var(--text-dark); /* Çıktı alanı metin rengi */
         }
 
         nav {
@@ -93,7 +98,7 @@
 
         nav a {
             text-decoration: none;
-            color: white;
+            color: var(--light-gray);
             background-color: var(--dark-blue);
             padding: 10px 20px;
             border-radius: 5px;
@@ -118,6 +123,10 @@
                 font-size: 0.9em;
                 padding: 8px 15px;
             }
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -157,7 +166,7 @@
             <option value="İlham Verme">İlham Verme</option>
             <option value="Eğitim Satışı">Eğitim Satışı</option>
             <option value="Sınav Hazırlık">Sınav Hazırlık</option>
-            <option value="Diğer">Diğer</option>
+            <option value="Diğer"></option>
         </select>
         <input type="text" id="purposeOther" class="hidden" placeholder="Lütfen diğer amacı belirtin">
 
@@ -167,7 +176,7 @@
             <option value="B1/B2 Orta Seviye">B1/B2 Orta Seviye</option>
             <option value="C1/C2 İleri Seviye">C1/C2 İleri Seviye</option>
             <option value="Belirli Bir Sektöre Yönelik">Belirli Bir Sektöre Yönelik</option>
-            <option value="Diğer">Diğer</option>
+            <option value="Diğer"></option>
         </select>
         <input type="text" id="audienceOther" class="hidden" placeholder="Lütfen diğer kitleyi belirtin">
 
@@ -178,7 +187,7 @@
             <option value="Enerjik">Enerjik</option>
             <option value="İlham Verici">İlham Verici</option>
             <option value="Kurumsal">Kurumsal</option>
-            <option value="Diğer">Diğer</option>
+            <option value="Diğer"></option>
         </select>
         <input type="text" id="toneOther" class="hidden" placeholder="Lütfen diğer tonu belirtin">
 
@@ -189,7 +198,7 @@
             <option value="DM">DM</option>
             <option value="Biyografideki Link">Biyografideki Link</option>
             <option value="Özel Form">Özel Form</option>
-            <option value="Diğer">Diğer</option>
+            <option value="Diğer"></option>
         </select>
         <input type="text" id="linkOther" class="hidden" placeholder="Lütfen diğer yönlendirmeyi belirtin">
 
@@ -212,7 +221,7 @@
     </form>
 
     <div class="output" id="output"></div>
-    <button onclick="copyToClipboard()" style="background-color: var(--dark-blue); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; margin-top: 10px;">Kopyala</button>
+    <button onclick="copyToClipboard()" style="background-color: var(--dark-blue); color: var(--text-light); border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; margin-top: 10px;">Kopyala</button>
 
     <script>
         function toggleOtherField(selectId, inputId) {
