@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metin Birleştirici</title>
+    <style>
+        :root {
+            --dark-blue: #202541;
+            --light-blue: #364b89;
+            --white: #f2f1f0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--light-blue);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        textarea {
+            width: 90%;
+            height: 100px;
+            margin-bottom: 10px;
+            border: 1px solid var(--dark-blue);
+            border-radius: 5px;
+            font-size: 1rem;
+            padding: 10px;
+            color: var(--dark-blue);
+            background-color: var(--white);
+        }
+
+        button {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
+        }
+
+        .output {
+            margin-top: 20px;
+            width: 90%;
+        }
+
+        .buttons {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .buttons button {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            textarea {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button onclick="goBack()">Geri</button>
+        <button onclick="goHome()">Ana Sayfa</button>
+    </div>
+
+    <img src="https://www.aydadil.com/wp-content/uploads/2024/03/aydankdilwhite-1.png" alt="Ayda Logo" class="logo">
+    <h1>Yönetim Paneli</h1>
+
+    <textarea id="inputText" placeholder="Buraya metin girin..."></textarea>
+    <button onclick="combineText()">Metni Birleştir</button>
+    <div class="output">
+        <h3>Sonuç:</h3>
+        <textarea id="outputText" readonly></textarea>
+        <button onclick="copyText()">Kopyala</button>
+    </div>
+
+    <script>
+        function combineText() {
+            const predefinedText = `🎓 TELC sertifikalı eğitmenlerle online Almanca dersleri
+
+📌 Danışmanlık ve tercümanlık hizmetleriyle Almanya yolculuğunuzda yanınızdayız.
+
+🎥 Eğitici ve eğlendirici videolarımız için YouTube kanalımızı ziyaret edin: 
+youtube/aydadil
+📞 Kayıt ve bilgi için: www.aydadil.com | 0312 911 25 03
+
+💬 WhatsApp: 0540 911 25 03
+
+#Almanca, #AlmancaKursu, #OnlineAlmanca, #almancaöğren, #almancaöğreniyorum, #almancaonline
+`;
+            const input = document.getElementById('inputText').value;
+            const combined = input + "\n\n" + predefinedText;
+            document.getElementById('outputText').value = combined;
+        }
+
+        function copyText() {
+            const output = document.getElementById('outputText');
+            output.select();
+            output.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            alert('Metin kopyalandı!');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
