@@ -39,7 +39,7 @@
 
         textarea {
             width: 90%;
-            height: 100px;
+            min-height: 150px; /* Varsayılan olarak daha büyük bir yükseklik */
             margin-bottom: 10px;
             border: 1px solid var(--white);
             border-radius: 5px;
@@ -47,6 +47,8 @@
             padding: 10px;
             color: var(--text-color); /* Metin rengi beyaz */
             background-color: var(--dark-blue); /* Arka plan koyu mavi */
+            resize: none; /* Manuel olarak boyutlandırmayı devre dışı bırak */
+            overflow-y: hidden; /* Taşan içeriği gizle */
         }
 
         button {
@@ -154,6 +156,13 @@ youtube/aydadil
         function goHome() {
             window.location.href = "index.html";
         }
+
+        // Otomatik olarak metin kutusunun yüksekliğini yazıya göre ayarla
+        const inputText = document.getElementById('inputText');
+        inputText.addEventListener('input', function () {
+            this.style.height = 'auto'; // Önce yüksekliği sıfırla
+            this.style.height = this.scrollHeight + 'px'; // İçeriğe göre yükseklik belirle
+        });
     </script>
 </body>
 </html>
