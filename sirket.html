@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayda Yönetim Paneli</title>
+    <style>
+        :root {
+            --main-dark-blue: #202541;
+            --main-light-blue: #364b89;
+            --main-white: #f2f1f0;
+            --copy-btn-color: #ae1613;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: var(--main-light-blue);
+            font-family: Arial, sans-serif;
+            color: var(--main-white);
+            text-align: center;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100px;
+            background-color: var(--main-dark-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .sidebar button {
+            background-color: var(--main-white);
+            color: var(--main-dark-blue);
+            border: none;
+            margin: 10px 0;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 80%;
+        }
+
+        .sidebar button:hover {
+            background-color: var(--copy-btn-color);
+            color: var(--main-white);
+        }
+
+        .container {
+            margin-left: 120px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 20px;
+            color: var(--main-white);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                width: 100px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .popup {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f9f9f9;
+            margin-top: 10px;
+            color: black;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .copy-btn {
+            margin-top: 10px;
+            background-color: var(--copy-btn-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <button onclick="goBack()">Geri</button>
+    <button onclick="goHome()">Ana Sayfa</button>
+</div>
+
+<div class="container">
+    <img src="https://www.aydadil.com/wp-content/uploads/2024/03/aydankdilwhite-1.png" alt="Ayda Logo" class="logo">
+    <h1>Yönetim Paneli</h1>
+
+    <div id="password-section">
+        <p>Lütfen şifreyi giriniz:</p>
+        <input type="password" id="password" placeholder="Şifre">
+        <button onclick="checkPassword()">Giriş</button>
+    </div>
+
+    <div id="content-section" class="hidden">
+        <button onclick="showBankDetails()">Banka Bilgileri</button>
+        <button onclick="showCompanyDetails()">Şirket Bilgileri</button>
+
+        <div id="popup" class="popup hidden">
+            <p id="popup-text"></p>
+            <button class="copy-btn" onclick="copyText()">Kopyala</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    function goHome() {
+        window.location.href = 'index.html';
+    }
+
+    function checkPassword() {
+        const password = document.getElementById('password').value.toLowerCase();
+        if (password === 'eo2503') {
+            document.getElementById('password-section').classList.add('hidden');
+            document.getElementById('content-section').classList.remove('hidden');
+        } else {
+            alert('Yanlış şifre!');
+        }
+    }
+
+    function showBankDetails() {
+        const text = `TR76 0006 2000 4110 0006 2883 30\n\nSami Onuralp Özkan Esra Çalt Adi Ortaklığı\n\nGaranti Bankası\n\nAçıklamaya Tam isminizi ve telefon numaranızı yazınız lütfen`;
+        showPopup(text);
+    }
+
+    function showCompanyDetails() {
+        const text = `Şirket İsmi: Sami Onuralp Özkan ve Esra Çalt Adi Ortaklığı\n\nVergino: 7421166532\n\nVergi Dairesi: Mithatpaşa Vergi Dairesi\n\nAdres: Kızılay Mah. Necatibey Cad. 17/7 Çankaya Ankara`;
+        showPopup(text);
+    }
+
+    function showPopup(text) {
+        const popup = document.getElementById('popup');
+        const popupText = document.getElementById('popup-text');
+        popupText.textContent = text;
+        popup.classList.remove('hidden');
+    }
+
+    function copyText() {
+        const popupText = document.getElementById('popup-text');
+        navigator.clipboard.writeText(popupText.textContent).then(() => {
+            alert('Metin kopyalandı!');
+        });
+    }
+</script>
+
+</body>
+</html>
