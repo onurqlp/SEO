@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli - Fiyat Listesi</title>
+    <style>
+        :root {
+            --dark-blue: #202541;
+            --light-blue: #364b89;
+            --white: #f2f1f0;
+            --text-color: #ffffff; /* Daha okunabilir metin rengi */
+            --button-color: #FF0000; /* Kırmızı buton rengi */
+            --button-hover: #cc0000; /* Hover için koyu kırmızı */
+            --copy-button-color: #FF0000; /* Kırmızı kopyala butonu */
+            --copy-button-hover: #cc0000; /* Hover için koyu kırmızı */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .buttons button {
+            background-color: var(--button-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: var(--button-hover);
+            color: var(--white);
+        }
+
+        .content {
+            width: 90%;
+            max-width: 800px;
+            margin-top: 40px;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: var(--button-color);
+            color: white;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            flex: 1 1 150px;
+            max-width: 200px;
+        }
+
+        .button-container button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .table-container {
+            display: none;
+            margin-bottom: 20px;
+            background-color: var(--dark-blue);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            background-color: var(--light-blue);
+        }
+
+        table, th, td {
+            border: 1px solid var(--white);
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+            color: var(--white);
+        }
+
+        th {
+            background-color: var(--dark-blue);
+        }
+
+        .copy-button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            background-color: var(--copy-button-color);
+            color: white;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: var(--copy-button-hover);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            .buttons button {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+
+            .button-container button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            table, th, td {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <!-- "Geri" Butonu Kaldırıldı, Sadece "Ana Sayfa" Butonu Kaldırılmadı -->
+        <button onclick="goHome()">Ana Sayfa</button>
+    </div>
+
+    <img src="https://www.aydadil.com/wp-content/uploads/2024/03/aydankdilwhite-1.png" alt="Ayda Logo" class="logo">
+    <h1>Yönetim Paneli</h1>
+
+    <div class="content">
+        <div class="button-container">
+            <button onclick="showTable('kurTable')">Fiyat Listesi</button>
+            <button onclick="showTable('telcTable')">Telc Sınav Fiyatları</button>
+            <button>Boş Buton 3</button>
+            <button>Boş Buton 4</button>
+            <button>Boş Buton 5</button>
+            <button>Boş Buton 6</button>
+        </div>
+
+        <!-- Kurlar Fiyat Listesi -->
+        <div id="kurTable" class="table-container">
+            <h2>Kurlar Fiyat Listesi</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kurlar</th>
+                        <th>Fiyat</th>
+                        <th>İndirimli*</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A1</td>
+                        <td>9.000 ₺</td>
+                        <td>7.200 ₺</td>
+                    </tr>
+                    <tr>
+                        <td>A2</td>
+                        <td>9.000 ₺</td>
+                        <td>7.200 ₺</td>
+                    </tr>
+                    <tr>
+                        <td>B1</td>
+                        <td>10.000 ₺</td>
+                        <td>8.000 ₺</td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>10.000 ₺</td>
+                        <td>8.000 ₺</td>
+                    </tr>
+                    <tr>
+                        <td>A1+A2</td>
+                        <td>15.000 ₺</td>
+                        <td>12.000 ₺</td>
+                    </tr>
+                    <tr>
+                        <td>B1+B2</td>
+                        <td>17.000 ₺</td>
+                        <td>14.000 ₺</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="copy-button" onclick="copyTable('kurTable')">Kopyala</button>
+        </div>
+
+        <!-- Telc Sınav Fiyat Listesi -->
+        <div id="telcTable" class="table-container">
+            <h2>Telc Sınav Fiyat Listesi</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Seviye</th>
+                        <th>Fiyat</th>
+                        <th>İndirimli*</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A2</td>
+                        <td>170 €</td>
+                        <td>150 €</td>
+                    </tr>
+                    <tr>
+                        <td>B1</td>
+                        <td>210 €</td>
+                        <td>190 €</td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>210 €</td>
+                        <td>190 €</td>
+                    </tr>
+                    <tr>
+                        <td>C1</td>
+                        <td>250 €</td>
+                        <td>230 €</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="copy-button" onclick="copyTable('telcTable')">Kopyala</button>
+        </div>
+    </div>
+
+    <script>
+        function showTable(tableId) {
+            // Tüm tablo konteynerlerini gizle
+            var tables = document.getElementsByClassName('table-container');
+            for (var i = 0; i < tables.length; i++) {
+                tables[i].style.display = 'none';
+            }
+            // Seçilen tabloyu göster
+            document.getElementById(tableId).style.display = 'block';
+        }
+
+        function copyTable(tableId) {
+            var table = document.getElementById(tableId).getElementsByTagName('table')[0];
+            var range = document.createRange();
+            range.selectNode(table);
+            window.getSelection().removeAllRanges(); // Seçimi temizle
+            window.getSelection().addRange(range); // Tabloyu seç
+            try {
+                var successful = document.execCommand('copy');
+                if (successful) {
+                    alert('Tablo verisi panoya kopyalandı!');
+                } else {
+                    alert('Kopyalama başarısız oldu.');
+                }
+            } catch (err) {
+                alert('Kopyalama işlemi desteklenmiyor.');
+            }
+            window.getSelection().removeAllRanges(); // Seçimi temizle
+        }
+
+        function goHome() {
+            window.location.href = "index.html"; // Ana sayfanın doğru URL'sini buraya ekleyin
+        }
+    </script>
+</body>
+</html>
