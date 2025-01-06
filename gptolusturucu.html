@@ -267,11 +267,20 @@
         }
 
         function copyToClipboard() {
-            const outputText = document.getElementById('output').textContent;
-            navigator.clipboard.writeText(outputText).then(() => {
-                alert('Metin kopyalandı!');
-            });
-        }
+    const outputText = document.getElementById('output').textContent;
+    const additionalText = `
+bunlara uygun 3 adet mini konu anlatımı, 2 adet kısa konuya dair verilmiş örnek cümleler. 
+Sonrasında konu özeline seçilmiş "sen de yoruma yaz" sorusu (örneğin bu konu şu şekilde nasıl sorulur gibi). 
+Sonrasında 9 adet konu içeriği özeline YouTube/Instagram için hashtag: 
+- 5 tanesi sadece konuyu ilgilendirsin, genel düşünme. 
+- 4 tanesi konu özelinde genel olabilir. Almanca hashtag çok yazmamaya dikkat et, konu başlıkları hariç. 
+Sonrasında altına konu özelinde 6 tane genel SEO ve konu özelinde SEO kombinasyonlu başlık önerileri ver.`;
+
+    const fullText = `${outputText}\n\n${additionalText}`;
+    navigator.clipboard.writeText(fullText).then(() => {
+        alert('Metin kopyalandı!');
+    });
+}
     </script>
 </body>
 </html>
