@@ -9,13 +9,12 @@
             --dark-blue: #202541;
             --light-blue: #364b89;
             --white: #f2f1f0;
-            --text-color: #ffffff; /* Daha okunabilir metin rengi */
-            --button-color: #FF0000; /* Kırmızı buton rengi */
-            --button-hover: #cc0000; /* Hover için koyu kırmızı */
-            --copy-button-color: #FF0000; /* Kırmızı kopyala butonu */
-            --copy-button-hover: #cc0000; /* Hover için koyu kırmızı */
+            --text-color: #ffffff;
+            --button-color: #FF0000;
+            --button-hover: #cc0000;
+            --copy-button-color: #FF0000;
+            --copy-button-hover: #cc0000;
         }
-
         body {
             margin: 0;
             padding: 0;
@@ -27,19 +26,16 @@
             align-items: center;
             min-height: 100vh;
         }
-
         .logo {
             width: 150px;
             height: auto;
             margin: 20px 0;
         }
-
         h1 {
             color: var(--text-color);
             font-size: 2rem;
             margin-bottom: 20px;
         }
-
         .buttons {
             position: fixed;
             left: 20px;
@@ -48,7 +44,6 @@
             flex-direction: column;
             gap: 10px;
         }
-
         .buttons button {
             background-color: var(--button-color);
             color: var(--white);
@@ -59,18 +54,15 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         .buttons button:hover {
             background-color: var(--button-hover);
             color: var(--white);
         }
-
         .content {
             width: 90%;
             max-width: 800px;
             margin-top: 40px;
         }
-
         .button-container {
             margin-bottom: 20px;
             display: flex;
@@ -78,7 +70,6 @@
             gap: 10px;
             justify-content: center;
         }
-
         .button-container button {
             padding: 10px 20px;
             cursor: pointer;
@@ -90,11 +81,9 @@
             flex: 1 1 150px;
             max-width: 200px;
         }
-
         .button-container button:hover {
             background-color: var(--button-hover);
         }
-
         .table-container {
             display: none;
             margin-bottom: 20px;
@@ -102,28 +91,23 @@
             padding: 20px;
             border-radius: 5px;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 10px;
             background-color: var(--light-blue);
         }
-
         table, th, td {
             border: 1px solid var(--white);
         }
-
         th, td {
             text-align: left;
             padding: 8px;
             color: var(--white);
         }
-
         th {
             background-color: var(--dark-blue);
         }
-
         .copy-button {
             padding: 8px 16px;
             cursor: pointer;
@@ -133,39 +117,20 @@
             border-radius: 4px;
             transition: background-color 0.3s;
         }
-
         .copy-button:hover {
             background-color: var(--copy-button-hover);
         }
-
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .logo {
-                width: 100px;
-            }
-
-            .buttons button {
-                font-size: 0.8rem;
-                padding: 8px 16px;
-            }
-
-            .button-container button {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-
-            table, th, td {
-                font-size: 0.9rem;
-            }
+            h1 { font-size: 1.5rem; }
+            .logo { width: 100px; }
+            .buttons button { font-size: 0.8rem; padding: 8px 16px; }
+            .button-container button { padding: 8px 16px; font-size: 0.9rem; }
+            table, th, td { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
     <div class="buttons">
-        <!-- "Geri" Butonu Kaldırıldı, Sadece "Ana Sayfa" Butonu Kaldırılmadı -->
         <button onclick="goHome()">Ana Sayfa</button>
     </div>
 
@@ -173,16 +138,13 @@
     <h1>Yönetim Paneli</h1>
 
     <div class="content">
+        <!-- Tablo Butonları -->
         <div class="button-container">
             <button onclick="showTable('kurTable')">Fiyat Listesi</button>
             <button onclick="showTable('telcTable')">Telc Sınav Fiyatları</button>
-            <button>Boş Buton 3</button>
-            <button>Boş Buton 4</button>
-            <button>Boş Buton 5</button>
-            <button>Boş Buton 6</button>
         </div>
 
-        <!-- Kurlar Fiyat Listesi -->
+        <!-- Tablolar -->
         <div id="kurTable" class="table-container">
             <h2>Kurlar Fiyat Listesi</h2>
             <table>
@@ -229,7 +191,6 @@
             <button class="copy-button" onclick="copyTable('kurTable')">Kopyala</button>
         </div>
 
-        <!-- Telc Sınav Fiyat Listesi -->
         <div id="telcTable" class="table-container">
             <h2>Telc Sınav Fiyat Listesi</h2>
             <table>
@@ -265,16 +226,19 @@
             </table>
             <button class="copy-button" onclick="copyTable('telcTable')">Kopyala</button>
         </div>
+
+        <!-- Mesaj Butonları Bölümü -->
+        <div class="button-container" id="message-buttons-container">
+            <!-- Önceki mesaj panelindeki butonlar buraya eklenecek -->
+        </div>
     </div>
 
     <script>
         function showTable(tableId) {
-            // Tüm tablo konteynerlerini gizle
             var tables = document.getElementsByClassName('table-container');
             for (var i = 0; i < tables.length; i++) {
                 tables[i].style.display = 'none';
             }
-            // Seçilen tabloyu göster
             document.getElementById(tableId).style.display = 'block';
         }
 
@@ -282,24 +246,69 @@
             var table = document.getElementById(tableId).getElementsByTagName('table')[0];
             var range = document.createRange();
             range.selectNode(table);
-            window.getSelection().removeAllRanges(); // Seçimi temizle
-            window.getSelection().addRange(range); // Tabloyu seç
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
             try {
                 var successful = document.execCommand('copy');
-                if (successful) {
-                    alert('Tablo verisi panoya kopyalandı!');
-                } else {
-                    alert('Kopyalama başarısız oldu.');
-                }
+                alert(successful ? 'Tablo verisi panoya kopyalandı!' : 'Kopyalama başarısız oldu.');
             } catch (err) {
                 alert('Kopyalama işlemi desteklenmiyor.');
             }
-            window.getSelection().removeAllRanges(); // Seçimi temizle
+            window.getSelection().removeAllRanges();
+        }
+
+        function copyMessage(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function() {
+                    alert('Mesaj kopyalandı!');
+                });
+            } else {
+                var textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Mesaj kopyalandı!');
+                } catch (err) {
+                    alert('Kopyalama başarısız oldu.');
+                }
+                document.body.removeChild(textArea);
+            }
         }
 
         function goHome() {
-            window.location.href = "index.html"; // Ana sayfanın doğru URL'sini buraya ekleyin
+            window.location.href = "index.html";
         }
+
+        // Önceki mesaj kopyalama panelindeki mesajlar
+        var messages = [
+            { name: "Detaylı Arama", text: "Öğretmenimizle birlikte ilgili detayları öğrenmek veya içerik hakkında sorularınızı sormak isterseniz kısaca telefonda görüşebiliriz. Böylelikle aklınızdaki tüm soruları yanıtlayabiliriz. Sizin için hangi saat uygundur?" },
+            { name: "A1 Kursu", text: "Merhabalar! Öncelikle ilginiz için teşekkürler. Daha önce Almanca dersi aldınız mı, yoksa sıfırdan mı başlıyorsunuz?" },
+            { name: "A1 Kursu 2. Mesaj", text: "A1 ile A2 seviyelerini kapsayan programımız 3 Mart’ta başlayacak ve toplam 6 hafta sürecek. Haftada 3 gün (Pazartesi, Çarşamba, Cuma) ders, hafta sonu 1 gün de konuşma pratiği yapıyoruz. Ücret 12.000₺, 2 taksit şeklinde ödeyebilirsiniz. Programımıza ek olarak, offline konu anlatımı ve soru çözüm derslerini de sunuyoruz. Ders kayıtlarını istediğiniz zaman izleyerek eksiklerinizi tamamlayabilirsiniz." },
+            { name: "A2 Kursu", text: "Öncelikle ilginiz için teşekkürler. A1 seviyenizi ne zaman bitirdiğinizi paylaşabilir misiniz? Ve hangi seviyeye kadar devam etme planındasınız?" },
+            { name: "A2 Kursu 2.Mesaj", text: "24 Şubat’ta başlayacak 6 haftalık A2 kursumuz için kampanyalı fiyat 7.000₺ (2 taksit seçeneği bulunuyor). Ayrıca offline konu anlatım ve soru çözüm videolarını istediğiniz vakit izleyerek ilerlemenizi destekleyebilirsiniz. Pazartesi, Çarşamba ve Cuma günleri online canlı dersler, hafta sonları ise konusma dersleri olmaktadır." },
+            { name: "B2 telc", text: "B2 sınav hazırlık kursumuza ilginiz için teşekkür ederiz. Acaba sınav tarihini netleştirdiniz mi? Kursumuz, sınav takvimine uyacak şekilde planlanıyor ve kursu tamamladıktan sonra kurumumuz rehberliğinde telc sınava girebiliyorsunuz. Kurs katılımcıları indirim haklarından yararlanabiliyor mu?" },
+            { name: "B2 tarih Almadım", text: "25 Şubatta başlayacak ve İlk hafta B seviyesi grameri hızlıca işliyoruz, ardından 3 hafta boyunca soru çözüm oturumları düzenliyoruz. Salı ve Perşembe günleri sınavın diğer bölümlerine odaklanıyoruz; Cumartesi günlerini konuşma pratiğine ayırıyoruz. Pazar günleri hibrit deneme sınavları yapıp, telc değerlendirme eğitmenimiz eşliğinde kapsamlı değerlendirmeye tabi tutuyoruz. Ücret 13.000₺, 2 taksitle ödeyebilirsiniz." },
+            { name: "Tarih aldım b2", text: "Hiç sorun değil. Zaman yaptığımız hazırlık sınava nerede girerseniz girin geçmenize uyarlanmış kurs şeklindedir. Programımız 25 Şubatta başlayacak; İlk hafta B seviyesi grameri hızlıca işliyoruz, ardından 3 hafta boyunca soru çözüm oturumları düzenliyoruz. Salı ve Perşembe günleri sınavın diğer bölümlerine odaklanıyoruz; Cumartesi günlerini konuşma pratiğine ayırıyoruz. Pazar günleri hibrit deneme sınavları yapıp, telc değerlendirme eğitmenimiz eşliğinde kapsamlı değerlendirmeye tabi tutuyoruz." },
+            { name: "Klüpler bilgi", text: "Öncelikle ilginiz için teşekkürler. Almanca seviyeniz nedir? Başlangıç ve orta seviye konuşma dersleri sunuyoruz. Size en uygun programı önerebilmemiz için bu bilgiyi paylaşır mısınız?" },
+            { name: "Kulüpler A1 A2", text: "Başlangıç seviyesi konuşma kulüplerimiz her pazar 17:00-18:30 arasında yapılmakta ve aylık ücreti 2.000₺’dir. Pakette A1-A2 konu anlatım videolarımız da bulunuyor." },
+            { name: "Kulüpler B1 B2", text: "Orta seviye konuşma kulüplerimiz cumartesi 17:00-18:30 arasında yapılmakta ve aylık ücreti 2.000₺’dir. Ayrıca, B1-B2 konu anlatım videolarımız da pakete dahildir." },
+            { name: "Videolar Kulüp", text: "https://youtu.be/odMteKxaHTs?si=CWv20BS8RDzIBzLj – Bu videolardan ders içeriklerimiz hakkında fikir edinebilirsiniz." },
+            { name: "B2 Video", text: "https://youtu.be/DraxVYcScog?si=MOHdROZRG044iz0Q ve https://youtu.be/hMXXLIySqZM?si=_Q1h4G3zrQTQYUhw – Bu videolardan ders içeriklerimiz hakkında bilgi edinebilirsiniz." }
+        ];
+
+        var messageContainer = document.getElementById('message-buttons-container');
+        messages.forEach(function(msg) {
+            var btn = document.createElement('button');
+            btn.textContent = msg.name;
+            btn.onclick = function() {
+                copyMessage(msg.text);
+            };
+            messageContainer.appendChild(btn);
+        });
     </script>
 </body>
 </html>
